@@ -2,6 +2,7 @@
 
 <p align="center"> A API SDK for gwlp supply chain.</p>
 
+![StyleCI build status](https://github.styleci.io/repos/370627549/shield)
 
 ## 安装
 
