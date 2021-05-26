@@ -1,0 +1,21 @@
+{
+    "name": "nason\/gw-supply-chain",
+    "description": "A API SDK for gwlp supply chain",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nason",
+            "email": "mananxun99@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~6.5",
+        "ext-json": "*",
+        "phpunit/phpunit": "~6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nason\\GwSupplyChain\\": "src"
+        }
+    }
+}
