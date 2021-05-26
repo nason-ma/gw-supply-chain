@@ -1,8 +1,15 @@
 <?php
 
+/*
+ * This file is part of the nason/gw_supply_chain.
+ *
+ * (c) nason <mananxun99@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace Nason\GwSupplyChain;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
@@ -11,7 +18,6 @@ use Nason\GwSupplyChain\Exceptions\InvalidArgumentException;
 
 abstract class BaseApi
 {
-
     protected $apiUrl = 'http://api.gylp.gwulp.com/';
 
     protected $wid;
@@ -43,7 +49,7 @@ abstract class BaseApi
 
     protected function getAccessToken()
     {
-        return md5($this->wid . $this->token . time());
+        return md5($this->wid.$this->token.time());
     }
 
     public function request($method, $service, $params = [])
@@ -52,13 +58,13 @@ abstract class BaseApi
             throw new InvalidArgumentException('Arguments(method or service) cannot be empty');
         }
 
-        $this->params['service'] = $this->getServicePrefix() . $service;
+        $this->params['service'] = $this->getServicePrefix().$service;
         $params = array_merge($this->params, $params);
 
         $options = [];
-        if ($method == 'POST') {
+        if ('POST' == $method) {
             $options = [RequestOptions::FORM_PARAMS => $params];
-        } elseif ($method == 'GET') {
+        } elseif ('GET' == $method) {
             $options = [RequestOptions::QUERY => $params];
         }
 
