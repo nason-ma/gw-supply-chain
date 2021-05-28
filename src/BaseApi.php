@@ -11,6 +11,7 @@
 
 namespace Nason\GwSupplyChain;
 
+
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Nason\GwSupplyChain\Exceptions\HttpException;
@@ -32,9 +33,6 @@ abstract class BaseApi
     {
         $this->wid = $wid;
         $this->token = $token;
-        $this->params['wid'] = $wid;
-        $this->params['timestamp'] = time();
-        $this->params['token'] = $this->getAccessToken();
     }
 
     public function setGuzzleConfig($config)
@@ -52,13 +50,21 @@ abstract class BaseApi
         return md5($this->wid.$this->token.time());
     }
 
+    protected function initBaseFields($service)
+    {
+        $this->params['wid'] = $this->wid;
+        $this->params['token'] = $this->getAccessToken();
+        $this->params['timestamp'] = time();
+        $this->params['service'] = $this->getServicePrefix().$service;
+    }
+
     public function request($method, $service, $params = [])
     {
         if (empty($method) || empty($service)) {
             throw new InvalidArgumentException('Arguments(method or service) cannot be empty');
         }
 
-        $this->params['service'] = $this->getServicePrefix().$service;
+        $this->initBaseFields($service);
         $params = array_merge($this->params, $params);
 
         $options = [];
