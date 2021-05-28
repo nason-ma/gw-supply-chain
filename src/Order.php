@@ -103,7 +103,7 @@ class Order extends BaseApi
         }
     }
 
-    public function getOrderByOrderSn($orderSn, $platformSn)
+    public function getOrderByOrderSn($orderSn, $platformSn = '')
     {
         $params = [
             'order_sn' => $orderSn,
