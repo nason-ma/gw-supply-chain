@@ -11,7 +11,6 @@
 
 namespace Nason\GwSupplyChain;
 
-
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Nason\GwSupplyChain\Exceptions\HttpException;
